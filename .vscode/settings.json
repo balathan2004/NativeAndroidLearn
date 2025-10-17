@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    "**/androidTest": true,
+    "**/build": true,
+    "**/.gradle": true,
+    "**/test": true,
+    "**/gradle": true,
+    "**/build.gradle": true,
+    "**/gradle.properties": true,
+    "**/gradlew": true,
+    "**/gradlew.bat": true,
+    "/app/src":true
+  }
+}
