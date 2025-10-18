@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.learn.utils.Navigator;
+
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
@@ -18,12 +20,8 @@ public class MainActivity2 extends AppCompatActivity {
         Button nextButton = findViewById(R.id.btn);
 
         nextButton.setOnClickListener(v -> {
-            Intent ronaldo = new Intent(MainActivity2.this, MainActivity.class);
-            startActivity(ronaldo);
+            Navigator.NavigateMainActivity(MainActivity2.this);
+
         });
-
-
     }
-
-
 }

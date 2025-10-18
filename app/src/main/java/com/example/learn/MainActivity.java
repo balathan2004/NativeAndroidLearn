@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.learn.utils.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Button nextButton = findViewById(R.id.btn);
 
         nextButton.setOnClickListener(v -> {
-            Intent ronaldo = new Intent(MainActivity.this, MainActivity2.class);
-            startActivity(ronaldo);
+            Navigator.NavigateMainActivity2(MainActivity.this);
         });
 
     }
