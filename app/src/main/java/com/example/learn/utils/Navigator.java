@@ -23,8 +23,9 @@ public class Navigator {
         context.startActivity(intent);
     }
 
-    public static void NavigateMainActivity2(Context context) {
+    public static void NavigatePlayer(Context context, String name) {
         Intent intent = new Intent(context, MainActivity2.class);
+        intent.putExtra("player_name", name);
         context.startActivity(intent);
     }
 

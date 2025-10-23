@@ -2,26 +2,69 @@ package com.example.learn;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
+import android.widget.ImageView;
+
+
+// your ImageView
+
+
 import com.example.learn.utils.Navigator;
+import com.example.learn.utils.Player;
+import com.example.learn.utils.PlayerApi;
 
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main2);
 
-        Button nextButton = findViewById(R.id.btn);
+        TextView text = findViewById(R.id.helloText);
 
-        nextButton.setOnClickListener(v -> {
-            Navigator.NavigateMainActivity(MainActivity2.this);
+        ImageView img = findViewById(R.id.avatar);
 
+//        img.setImageResource();
+
+        String player_name = intent.getStringExtra("player_name");
+
+        text.setText(player_name);
+
+        PlayerApi.fetchPlayer(player_name, new PlayerApi.PlayerCallback() {
+            @Override
+            public void onSuccess(Player player) {
+                // runs in background thread; wrap in runOnUiThread if updating UI
+                Log.i("Player", "Got player: " + player.getStrPlayer());
+
+                Glide.with(getApplicationContext())
+                        .load(player.getStrThumb())  // URL of the image
+                        // optional: if failed
+                        .into(img);
+
+
+            }
+
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("Player", "Error fetching player: " + e.getMessage());
+            }
         });
+
+
+//        text.setText("Cristiano");
+
+
     }
 }
