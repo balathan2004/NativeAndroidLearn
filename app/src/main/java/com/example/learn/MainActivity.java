@@ -3,6 +3,7 @@ package com.example.learn;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,12 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout parent = findViewById(R.id.names);
 
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+
         String[] players = {"Messi", "Ronaldo", "Neymar", "Suarez", "Lewandowski"};
 
         for (String name : players) {
-            TextView tv = new TextView(this);
+            TextView tv =
+                    (TextView) inflater.inflate(R.layout.player_item, parent, false);
             tv.setText(name);
             tv.setTag(name);
+
             tv.setOnClickListener(e -> {
                 String PlayerName = ((TextView) e).getText().toString();
                 Navigator.NavigatePlayer(MainActivity.this, PlayerName

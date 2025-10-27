@@ -1,5 +1,7 @@
 package com.example.learn;
 
+import static com.example.learn.R.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,10 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 
 import android.widget.ImageView;
-
-
-// your ImageView
-
 
 import com.example.learn.utils.Navigator;
 import com.example.learn.utils.Player;
@@ -34,8 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         TextView text = findViewById(R.id.helloText);
 
         ImageView img = findViewById(R.id.avatar);
-
-//        img.setImageResource();
+        ImageView flag = findViewById(R.id.flag);
 
         String player_name = intent.getStringExtra("player_name");
 
@@ -46,25 +43,39 @@ public class MainActivity2 extends AppCompatActivity {
             public void onSuccess(Player player) {
                 // runs in background thread; wrap in runOnUiThread if updating UI
                 Log.i("Player", "Got player: " + player.getStrPlayer());
+                runOnUiThread(() -> {
+                    Glide.with(getApplicationContext()).load(player.getStrThumb())  // URL of the image
+                            // optional: if failed
+                            .into(img);
 
-                Glide.with(getApplicationContext())
-                        .load(player.getStrThumb())  // URL of the image
-                        // optional: if failed
-                        .into(img);
 
+                    String nationality = player.getStrNationality().toLowerCase();
 
+                    Log.i("Player", "Got player: " + nationality);
+
+                    int resId = getResources().getIdentifier(nationality, "string", getPackageName());
+
+                    Log.i("Player", "Got player: " + resId);
+                    String flagCode;
+                    if (resId != 0) {
+                        flagCode = getString(resId);
+                    } else {
+                        flagCode = "ar"; // fallback
+                    }
+
+                    String flagUrl = "https://flagcdn.com/108x81/" + flagCode + ".png";
+
+                    Glide.with(getApplicationContext()).load(flagUrl)  // URL of the image
+                            // optional: if failed
+                            .into(flag);
+                });
             }
-
 
             @Override
             public void onFailure(Exception e) {
                 Log.e("Player", "Error fetching player: " + e.getMessage());
             }
         });
-
-
-//        text.setText("Cristiano");
-
 
     }
 }
