@@ -33,6 +33,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         ImageView img = findViewById(R.id.avatar);
         ImageView flag = findViewById(R.id.flag);
+        TextView nation = findViewById(id.nation);
+
 
         String player_name = intent.getStringExtra("player_name");
 
@@ -50,6 +52,8 @@ public class MainActivity2 extends AppCompatActivity {
 
 
                     String nationality = player.getStrNationality().toLowerCase();
+
+                    nation.setText(nationality);
 
                     Log.i("Player", "Got player: " + nationality);
 

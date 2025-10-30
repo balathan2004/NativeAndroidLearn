@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
+    android:background="@color/white"
     android:orientation="vertical"
     android:paddingHorizontal="12dp"
-
     tools:context=".MainActivity">
 
     <ScrollView
@@ -27,29 +27,63 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="Hello , I'm Cristiano Ronaldo !"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
 
-            <ImageView
-                android:id="@+id/avatar"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:contentDescription="@string/messi"
+                android:cropToPadding="true"
                 android:maxHeight="400dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="10dp"
 
-                />
+                >
 
-            <ImageView
-                android:id="@+id/flag"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:contentDescription="@string/messi"
+                    android:cropToPadding="true"
+                    android:maxHeight="400dp"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:background="@color/white"
-                android:contentDescription="@string/messi"
-                android:maxWidth="100dp"
-                android:maxHeight="50dp" />
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+
+
+                >
+
+                <ImageView
+                    android:id="@+id/flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:contentDescription="@string/messi"
+                    android:maxWidth="100dp"
+                    android:maxHeight="50dp" />
+
+                <TextView
+                    android:id="@+id/nation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"></TextView>
+            </LinearLayout>
 
 
         </LinearLayout>
